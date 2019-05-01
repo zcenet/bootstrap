@@ -63,46 +63,6 @@ $(function () {
     assert.ok($.fn.bootstrapModal.Constructor.Default, 'default object exposed')
   })
 
-  QUnit.test('should insert into dom when show method is called', function (assert) {
-    assert.expect(1)
-    var done = assert.async()
-
-    $('<div id="modal-test"><div class="modal-dialog" /></div>')
-      .on('shown.bs.modal', function () {
-        assert.notEqual($('#modal-test').length, 0, 'modal inserted into dom')
-        done()
-      })
-      .bootstrapModal('show')
-  })
-
-  QUnit.test('should fire show event', function (assert) {
-    assert.expect(1)
-    var done = assert.async()
-
-    $('<div id="modal-test"><div class="modal-dialog" /></div>')
-      .on('show.bs.modal', function () {
-        assert.ok(true, 'show event fired')
-        done()
-      })
-      .bootstrapModal('show')
-  })
-
-  QUnit.test('should not fire shown when show was prevented', function (assert) {
-    assert.expect(1)
-    var done = assert.async()
-
-    $('<div id="modal-test"><div class="modal-dialog" /></div>')
-      .on('show.bs.modal', function (e) {
-        e.preventDefault()
-        assert.ok(true, 'show event fired')
-        done()
-      })
-      .on('shown.bs.modal', function () {
-        assert.ok(false, 'shown event fired')
-      })
-      .bootstrapModal('show')
-  })
-
   QUnit.test('should hide modal when hide is called', function (assert) {
     assert.expect(3)
     var done = assert.async()
@@ -118,23 +78,6 @@ $(function () {
         done()
       })
       .bootstrapModal('show')
-  })
-
-  QUnit.test('should toggle when toggle is called', function (assert) {
-    assert.expect(3)
-    var done = assert.async()
-
-    $('<div id="modal-test"><div class="modal-dialog" /></div>')
-      .on('shown.bs.modal', function () {
-        assert.ok($('#modal-test').is(':visible'), 'modal visible')
-        assert.notEqual($('#modal-test').length, 0, 'modal inserted into dom')
-        $(this).bootstrapModal('toggle')
-      })
-      .on('hidden.bs.modal', function () {
-        assert.ok(!$('#modal-test').is(':visible'), 'modal hidden')
-        done()
-      })
-      .bootstrapModal('toggle')
   })
 
   QUnit.test('should remove from dom when click [data-dismiss="modal"]', function (assert) {
